@@ -6,7 +6,6 @@ const router = express.Router();
 // get all books
 router.get("/books",getAllbooks);
 
-
 // add new book
 router.post("/books",addNewBook);
 

@@ -3,10 +3,14 @@ import cookieParser from "cookie-parser";
 import cors from "cors";
 import { connectDb } from "./config/configdb.js";
 import bookRouter from "./routes/bookroutes.js";
-
+import { config } from "dotenv";
 
 const app = express();
 
+// for working of dotenv set path 
+config({
+    path:"./configure.env",
+});
 
 // connect database
 connectDb();
@@ -17,6 +21,7 @@ app.use(express.json());
 app.use(cookieParser());
 
 var corsOptions = {
+    // afterwards we can change it to frontend URL
     origin:"http://localhost:8081",
 };
 
@@ -32,7 +37,6 @@ app.use('/',(req,res)=>{
 });
 
 
-const port = process.env.PORT;
-app.listen(port, (req,res) => {
-    console.log(`server is port fine on ${port}`);
+app.listen(process.env.PORT, (req,res) => {
+    console.log(`server is port fine on ${process.env.PORT}`);
 });
